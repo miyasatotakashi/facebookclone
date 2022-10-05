@@ -1,0 +1,16 @@
+current directory: /Users/takashimiyasato/workspace/facebookclone/vender/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+/Users/takashimiyasato/.rbenv/versions/3.0.1/bin/ruby -I /Users/takashimiyasato/.rbenv/versions/3.0.1/lib/ruby/3.0.0 -r ./siteconf20221005-17476-vz4hru.rb extconf.rb
+creating Makefile
+
+current directory: /Users/takashimiyasato/workspace/facebookclone/vender/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/takashimiyasato/workspace/facebookclone/vender/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/takashimiyasato/workspace/facebookclone/vender/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20221005-17476-dbnf5x/bootsnap
