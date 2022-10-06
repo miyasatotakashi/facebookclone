@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+gem 'bcrypt'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
