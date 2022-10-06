@@ -1,13 +1,21 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy]
 
-  # GET /contacts or /contacts.json
   def index
     @contacts = Contact.all
   end
 
-  # GET /contacts/1 or /contacts/1.json
   def show
+  end
+
+  def create
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      ContactMailer.contact_mail(@contact).deliver  ##追記
+      redirect_to contacts_path, notice: 'Contact was successfully created.'
+    else
+      render :new
+    end
   end
 
   # GET /contacts/new
@@ -15,11 +23,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new
   end
 
-  # GET /contacts/1/edit
   def edit
   end
 
-  # POST /contacts or /contacts.json
   def create
     @contact = Contact.new(contact_params)
 
