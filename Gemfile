@@ -16,6 +16,8 @@ gem 'net-pop'
 gem 'bcrypt'
 gem 'dotenv-rails'
 gem 'rexml'
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
