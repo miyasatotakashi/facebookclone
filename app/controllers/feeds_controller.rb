@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
     if params[:back]
       @feed = Feed.new(feed_params)
     else
-      @feed = Feed.new
+      @feed = Feed.new(user_id: current_user.id)
     end
   end
 
@@ -73,6 +73,6 @@ class FeedsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feed_params
-      params.require(:feed).permit(:image, :image_cache, :comment)
+      params.require(:feed).permit(:image, :image_cache, :comment, :user_id)
     end
 end

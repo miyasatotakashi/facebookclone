@@ -5,6 +5,7 @@
   <%= form.hidden_field :image_cache %>
   <%= @feed.comment if @feed.comment %>
   <%= form.hidden_field :comment %>
+  <%= form.hidden_field :user_id %>
   <%= form.submit "投稿する" %>
 <% end %>
 
