@@ -63,7 +63,6 @@ class FeedsController < ApplicationController
 
   def confirm
     @feed = Feed.new(feed_params)
-    byebug
   end
 
   private
