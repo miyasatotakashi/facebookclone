@@ -2,6 +2,8 @@
 
 one:
   image: MyText
+  comment: MyText
 
 two:
   image: MyText
+  comment: MyText
