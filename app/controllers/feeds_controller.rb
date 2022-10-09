@@ -1,16 +1,13 @@
 class FeedsController < ApplicationController
   before_action :set_feed, only: %i[ show edit update destroy ]
 
-  # GET /feeds or /feeds.json
   def index
     @feeds = Feed.all
   end
 
-  # GET /feeds/1 or /feeds/1.json
   def show
   end
 
-  # GET /feeds/new
   def new
     if params[:back]
       @feed = Feed.new(feed_params)
@@ -19,11 +16,9 @@ class FeedsController < ApplicationController
     end
   end
 
-  # GET /feeds/1/edit
   def edit
   end
 
-  # POST /feeds or /feeds.json
   def create
     @feed = Feed.new(feed_params)
 
@@ -38,7 +33,6 @@ class FeedsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /feeds/1 or /feeds/1.json
   def update
     respond_to do |format|
       if @feed.update(feed_params)
@@ -66,12 +60,10 @@ class FeedsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_feed
       @feed = Feed.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def feed_params
       params.require(:feed).permit(:image, :image_cache, :comment, :user_id)
     end
