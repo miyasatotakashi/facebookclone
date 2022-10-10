@@ -20,11 +20,15 @@ class FeedsController < ApplicationController
   end
 
   def create
-  @feed = current_user.feed.build(feed_params)
-    if @feed.save
-      redirect_to feeds_path, notice: "投稿しました！"
-    else
+    @feed = Feed.new(feed_params)
+    if params[:back]
       render :new
+    else
+      if @feed.save
+        redirect_to feeds_path, notice: "投稿しました！"
+      else
+        render :new
+      end
     end
   end
 
@@ -38,12 +42,12 @@ class FeedsController < ApplicationController
 
   def destroy
     @feed.destroy
-      respond_to feeds_path, notice: "投稿が削除されました。"
+    redirect_to feeds_path, notice: "投稿が削除されました。"
   end
 
   def confirm
     @feed = Feed.new(feed_params)
-    @feed.used_id = current_user.id
+    @feed.user_id = current_user.id
     render :new if @feed.invalid?
   end
 
@@ -54,7 +58,7 @@ class FeedsController < ApplicationController
   end
 
   def feed_params
-    params.require(:feed).permit(:image, :image_cache, :comment, :user_id)
+    params.require(:feed).permit(:image, :image_cache, :comment).merge(user_id:current_user.id)
   end
 
 end

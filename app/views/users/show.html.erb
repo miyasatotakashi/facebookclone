@@ -1,3 +1,7 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
+
+<button type="button" class="btn btn-light">
+<%= link_to "管理画面", feeds_path %>
+</button>

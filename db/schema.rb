@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_163322) do
   end
 
   create_table "feeds", force: :cascade do |t|
+    t.text "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment"
