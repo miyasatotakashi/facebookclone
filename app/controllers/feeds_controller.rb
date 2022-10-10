@@ -12,7 +12,7 @@ class FeedsController < ApplicationController
     if params[:back]
       @feed = Feed.new(feed_params)
     else
-      @feed = Feed.new(user_id: current_user.id)
+      @feed = Feed.new
     end
   end
 
@@ -20,51 +20,41 @@ class FeedsController < ApplicationController
   end
 
   def create
-    @feed = Feed.new(feed_params)
-
-    respond_to do |format|
-      if @feed.save
-        format.html { redirect_to feed_url(@feed), notice: "Feed was successfully created." }
-        format.json { render :show, status: :created, location: @feed }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
+  @feed = current_user.feed.build(feed_params)
+    if @feed.save
+      redirect_to feeds_path, notice: "投稿しました！"
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @feed.update(feed_params)
-        format.html { redirect_to feed_url(@feed), notice: "Feed was successfully updated." }
-        format.json { render :show, status: :ok, location: @feed }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
+    if @feed.update(feed_params)
+      redirect_to feeds_path, notice: "投稿が更新しました"
+    else
+      render :edit
     end
   end
 
-  # DELETE /feeds/1 or /feeds/1.json
   def destroy
     @feed.destroy
-
-    respond_to do |format|
-      format.html { redirect_to feeds_url, notice: "Feed was successfully destroyed." }
-      format.json { head :no_content }
-    end
+      respond_to feeds_path, notice: "投稿が削除されました。"
   end
 
   def confirm
     @feed = Feed.new(feed_params)
+    @feed.used_id = current_user.id
+    render :new if @feed.invalid?
   end
 
   private
-    def set_feed
-      @feed = Feed.find(params[:id])
-    end
 
-    def feed_params
-      params.require(:feed).permit(:image, :image_cache, :comment, :user_id)
-    end
+  def set_feed
+    @feed = Feed.find(params[:id])
+  end
+
+  def feed_params
+    params.require(:feed).permit(:image, :image_cache, :comment, :user_id)
+  end
+
 end
